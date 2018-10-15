@@ -1,0 +1,28 @@
+#include <cstdio>
+#include <iostream>
+using namespace std;
+int main()
+{
+    int n,lo,a;
+    int t[100005],l[100005];
+    cin>>n>>lo>>a;
+    for(int i=1;i<=n;i++)
+    {
+        cin>>t[i]>>l[i];
+    }
+    if(n==0)
+    {
+        cout<<lo/a<<endl;
+    }else
+    {
+        int sum=0;
+        sum+=t[1]/a;//先计算刚开始的休息时间
+        sum+=(lo-(t[n]+l[n]))/a;//计算最后的休息时间
+        for(int i=1;i<n;i++)
+        {
+           sum+=(t[i+1]-(l[i]+t[i]))/a;
+        }
+      cout<<sum<<endl;
+    }
+}
+可以把时间看成一段数轴
