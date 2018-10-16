@@ -1,0 +1,45 @@
+#include <cstdio>
+#include <iostream>
+using namespace std;
+int pre[1000];
+int find(int x)
+{
+    if(x==pre[x])
+        return pre[x]=x;
+    else
+        return pre[x]=find(pre[x]);
+}
+void mix(int a,int b)
+{
+    int fx=find(a);
+    int fy=find(b);
+    if(fx!=fy)
+        pre[fx]=fy;
+}
+int main()
+{
+    int T;
+    cin>>T;
+    int n,m;
+    while(T--)
+    {
+        int a,b,sum=0;
+        cin>>n>>m;
+        for(int i=1;i<=n;i++)
+            pre[i]=i;
+        for(int i=1;i<=m;i++)
+        {
+            cin>>a>>b;
+            mix(a,b);
+        }
+        for(int i=1;i<=n;i++)
+        {
+            if(pre[i]==i)
+                sum++;
+        }
+        cout<<sum<<endl;
+
+
+    }
+}
+题目的思路就是找父节点的个数，有多少个父节点就要多少张桌子
