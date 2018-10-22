@@ -1,0 +1,41 @@
+
+#include <cstdio>
+#include <iostream>
+#include <algorithm>
+#include <cstring>
+#include <string>
+using namespace std;
+int main()
+{
+    string s;
+    int a[2000];
+    while(cin>>s)
+    {
+        memset(a,0,sizeof(a));
+        int x=s.length(),flag=0,j=0;
+        for(int i=0;i<x;i++)
+        {
+            if(s[i]!='5')
+            {
+                if(flag==0)
+                {
+                    j++;
+                    flag=1;
+                }
+                a[j]=a[j]*10+s[i]-'0';//用一个数组存放字符数组中的数字
+            }
+            if(s[i]=='5')
+            {
+                flag=0;
+            }
+        }
+        sort(a,a+j+1);
+        for(int i=1;i<=j;i++)
+        {
+            cout<<a[i];
+            if(i!=j)
+                cout<<" ";
+        }
+        cout<<endl;
+    }
+}
