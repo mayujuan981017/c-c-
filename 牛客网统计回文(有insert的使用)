@@ -1,0 +1,41 @@
+#include <cstdio>
+#include <cstring>
+#include <iostream>
+using namespace std;
+bool huiwen(string str1)
+{
+    int x1=str1.length(),flag=0;
+    for(int i=0;i<x1;i++)
+    {
+        if(str1[i]!=str1[x1-i-1])
+        {
+            flag=1;
+            break;
+        }
+    }
+    if(flag)
+        return false;
+    else
+        return true;
+}
+int main()
+{
+    string str1,str2,tmp;
+    while(cin>>str1>>str2)
+    {
+        tmp=str1;
+        int x1=str1.length(),cnt=0;
+        for(int i=0;i<x1+1;i++)//对于每一个字符串str1有x1种插法
+        {
+            str1=tmp;
+            str1.insert(i,str2);
+            if(huiwen(str1))
+            {
+                cnt++;
+            }
+
+        }
+        cout<<cnt<<endl;
+
+    }
+}
