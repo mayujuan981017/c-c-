@@ -1,0 +1,31 @@
+迭代:利用变量的原值推算出变量的一个新值.如果递归是自己调用自己的话,迭代就是A不停的调用B。
+#include <cstdio>
+#include <iostream>
+#include <cmath>
+#include <algorithm>
+#include <math.h>
+using namespace std;
+int main()
+{
+    int n;
+    while(cin>>n)
+    {
+        int a[100];
+        for(int i=0;i<n;i++)
+            cin>>a[i];
+        sort(a,n+a);
+        int k=0;
+        for(int i=0;i<n;i++)
+        {
+            if(a[i]>k+1)
+            {
+                break;
+            }else{
+            k=k+a[i];
+            }
+        }
+        cout<<k+1<<endl;
+    }
+
+}
+利用迭代思想，假设最大的数是k，在新添加一个数字p，如果p<=k+1,则我可以得到的最大的数为p+k,如果p>k+1，则会出现空挡，k+1就肯定不能再得到。
