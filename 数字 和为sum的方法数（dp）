@@ -1,0 +1,90 @@
+#include <cstdio>
+#include <iostream>
+#include <cstring>
+using namespace std;
+int n,sum;
+int a[1000];
+long long way[1000][1000];//定义一个数组way[i][j]取i个数字变成j
+int main()
+{
+     cin>>n>>sum;
+     memset(way,0,sizeof(way));
+     for(int i=1;i<=n;i++)
+     {
+         cin>>a[i];
+         way[i][0]=1;//用i个数字变成和为0只有 一种方法，就是都不取
+     }
+     way[0][0]=1;
+     for(int i=1;i<=n;i++)
+     {
+         for(int j=1;j<=sum;j++)
+         {
+             if(j-a[i]>=0)
+             {
+                 way[i][j]=way[i-1][j]+way[i-1][j-a[i]];//放当前这个数和不放当前这个数，有两种，不妨的时候用i-1个数凑成j,
+             }else
+             way[i][j]=way[i-1][j];
+         }
+     }
+     cout<<way[n][sum]<<endl;
+}
+
+/*#include <iostream>
+#include <algorithm>
+using namespace std;
+//注意：最终结果int类型存不下，需要64位数据
+//注意：dp不能放在main里，栈存不下。需要存在全局数据区
+long long dp[1001][1001];
+int main()
+{
+    int n,sum;
+    cin>>n>>sum;
+
+    int p[1000];
+    for(int i = 1 ; i <= n ; i++)
+        cin>>p[i];
+//初始化dp,用前i个组成和为0的方案，只有1种，就是什么都不取，和为0；
+    for (int i = 0 ; i < n ;i++)
+    {
+        dp[i][0] = 1;
+    }
+//用0个元素不能组成1~sum
+    for (int j = 1 ; j < sum ;j++)
+    {
+        dp[0][j] = 0;
+    }
+
+    for (int i = 1 ; i <= n ;i++)
+    {
+        for (int j = 0 ; j<=sum ;j++)
+        {
+            if(p[i]<=j)
+                dp[i][j] = dp[i-1][j]+dp[i-1][j-p[i]];
+            else
+             dp[i][j] = dp[i-1][j];
+        }
+    }
+    cout<<dp[n][sum]<<endl;
+    return 0;
+}
+/*#include <cstdio>
+#include <iostream>
+#include <cstring>
+using namespace std;
+int data[1000];
+long long dp[1000];//dp[j]表示组成和为j的方案数
+int main() {
+    int n,sum;
+    cin>>n>>sum;
+    for (int i=0;i<n;i++) {
+        cin>>data[i];
+    }
+    dp[0] = 1;//dp[0]表示组成和为0的方案数为1,就是什么都不选
+    for (int i=0;i<n;i++) {
+        for (int j = sum;j >= data[i];j--) {//从和为sum开始，一直递减，一个个尝试，看能不能放入第i个数字，直到遍历到与第i个数同等大小的和
+              dp[j] = dp[j] + dp[j-data[i]];//放入数字i和不放入数字i的方案数总和
+        }
+    }
+    cout<<dp[sum]<<endl;
+}*/
+
