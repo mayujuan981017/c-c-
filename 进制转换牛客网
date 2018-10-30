@@ -1,0 +1,87 @@
+#include <cstdio>
+#include <iostream>
+using namespace std;
+int main()
+{
+    int m,n,i=0,b;
+    cin>>m>>n;
+    int c[100];
+    if(m<0)
+    {
+        m=-m;
+        cout<<"-";
+    }
+      while(m>0)
+      {
+         b=m%n;
+         c[i]=b;
+         m=m/n;
+         i++;
+       }
+       for(int j=i-1;j>=0;j--)
+       {
+           if(c[j]>=10)
+           {
+               if(c[j]==10)
+               cout<<"A";
+            if(c[j]==11)
+                cout<<"B";
+           if(c[j]==12)
+               cout<<"C";
+            if(c[j]==13)
+                cout<<"D";
+            if(c[j]==14)
+               cout<<"E";
+            if(c[j]==15)
+                cout<<"F";
+           }else
+           {
+               cout<<c[j];
+           }
+
+       }
+       cout<<endl;
+链接：https://www.nowcoder.com/questionTerminal/ac61207721a34b74b06597fe6eb67c52
+来源：牛客网
+
+#include <iostream>
+using namespace std;
+int main(){
+    string s="",table="0123456789ABCDEF";
+    int m,n;
+    cin>>m>>n;
+    while(m){
+        if(m<0){
+            m=-m;
+            cout<<"-";
+        }
+        s=table[m%n]+s;
+        m/=n;
+    }
+    cout<<s<<endl;
+    return 0;
+}
+}
+一定要考虑负数和i
+二进制转换成十进制
+#include<stdio.h> 
+#include<string.h> 
+
+int main() 
+{ 
+char a[33]; 
+int i, num = 0; 
+scanf("%s", a); 
+Scanf(“%d”,&n)//n指的是字符长度
+
+for(i=0;i<n ; i++)(记住要顺着写) 
+{ 
+
+num=num*2+a[i]-'0'; //ch-‘0’字符转化成数字
+} 
+printf("%d\n", num); 
+return 0; 
+} 
+
+num=num*2+ch-'0'; //这是什么意思 ？？
+当输入n个数字后, 再输入第n+1时, 原来输入的数字相对于右移1位, 根据上面公式可以看出, 右移一位相对于乘 2, 所以每输入新的一位就需要对之前输入的数字乘2, 然后再加上输入的就时当前值.ch-'0'是为了将输入的字符转化为对应数字
