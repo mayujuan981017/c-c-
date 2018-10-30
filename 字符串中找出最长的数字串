@@ -1,0 +1,24 @@
+#include <cstdio>
+#include <iostream>
+#include <cstring>
+#include <math.h>
+#include <algorithm>
+using namespace std;
+int main()
+{
+    string s;
+    cin>>s;
+    long long a[500]={0},j=0,flag=1;
+    for(int i=0;i<s.length();i++)
+    {
+        if(s[i]<='9'&&s[i]>='0')
+        {
+            a[j]=a[j]*10+s[i]-'0';
+        }else
+        {
+            j++;
+        }
+    }
+    sort(a,a+j+1);
+    cout<<a[j]<<endl;
+}
