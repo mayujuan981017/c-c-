@@ -1,0 +1,65 @@
+
+#include <iostream>
+using namespace std;
+int main(){
+    string s="",table="0123456789ABCDEF";
+    int m,n;
+    cin>>m>>n;
+    while(m){
+        if(m<0){
+            m=-m;
+            cout<<"-";
+        }
+        s=table[m%n]+s;
+        m/=n;
+    }
+    cout<<s<<endl;
+    return 0;
+}
+
+普通方法
+#include <cstdio>
+#include <iostream>
+using namespace std;
+int main()
+{
+    int m,n,i=0,b;
+    cin>>m>>n;
+    int c[100];
+    if(m<0)
+    {
+        m=-m;
+        cout<<"-";
+    }
+      while(m>0)
+      {
+         b=m%n;
+         c[i]=b;
+         m=m/n;
+         i++;
+       }
+       for(int j=i-1;j>=0;j--)
+       {
+           if(c[j]>=10)
+           {
+               if(c[j]==10)
+               cout<<"A";
+            if(c[j]==11)
+                cout<<"B";
+           if(c[j]==12)
+               cout<<"C";
+            if(c[j]==13)
+                cout<<"D";
+            if(c[j]==14)
+               cout<<"E";
+            if(c[j]==15)
+                cout<<"F";
+           }else
+           {
+               cout<<c[j];
+           }
+
+       }
+       cout<<endl;
+
+}
