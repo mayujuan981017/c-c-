@@ -27,7 +27,7 @@ int main()
         for (int j = 1; j <= n; j++)
           {
                if (j >= a[i])
-             dp[j] = dp[j] + dp[j-a[i]]; //j值取和不取两种情况组合数目之和
+             dp[j] = dp[j] + dp[j-a[i]]; //j值取和不取两种情况组合数目之和，/j值取和不取两种情况组合数目之和，不取a[i]得时候凑的是j,取a[i]得时候凑得则是j-a[i]
           }
      }
     cout << dp[n] << endl;
