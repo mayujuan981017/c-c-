@@ -1,0 +1,36 @@
+输入数据包含多个测试实例，每个测试实例占一行，每行的开始是一个整数n(3<=n<=100)，
+它表示多边形的边数（当然也是顶点数），然后是按照逆时针顺序给出的n个顶点的坐标（x1, y1, x2, y2... xn, yn）,为了简化问题，
+这里的所有坐标都用整数表示。
+输入数据中所有的整数都在32位整数范围内，n=0表示数据的结束，不做处理。
+#include <cstdio>
+#include <iostream>
+#include <cmath>
+using namespace std;
+int main()
+{
+    int n,a[101],b[101];
+    double sum;
+    while(cin>>n)
+    {
+        sum=0;
+        if(n==0)
+            break;
+        else
+        {
+            for(int i=0;i<n;i++)
+            cin>>a[i]>>b[i];
+           for(int i=1;i<n;i++)
+           {
+              sum=sum+(a[i-1]*b[i]-a[i]*b[i-1])/2.0;
+           }
+           sum=sum+(a[n-1]*b[0]-a[0]*b[n-1])/2.0;
+           printf("%.1lf\n",sum);
+        }
+
+    }
+}
+用三角形的外积求三角形的面积，把每个多边形分成若干个三角形求和，逆时针取相邻的两个点和原点构成的面积
+
+
+s=(x0*y1-x1*y0)/2.0
+
