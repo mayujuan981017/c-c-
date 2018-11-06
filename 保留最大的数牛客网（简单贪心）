@@ -1,0 +1,40 @@
+给定一个十进制的正整数number，选择从里面去掉一部分数字，希望保留下来的数字组成的正整数最大。
+1.首先我们要知道，不能优先删除这个数字中最小的数位。
+举个栗子：6957
+正确答案是957才对，但是如果删除最小的5，就变成了697，这样是不对的~
+2.我们制定这样一个贪心策略，因为我们只删除掉一个数位，我们发现一旦出现num[i]<num[i+1]，我们删除num[i]这个数位，就是最优策略。
+因为这个数位限制了当前数的大小，把它删除，数字一定变大且一定是最大。
+如：6957,957……
+3.递减的情况，删除最小的即可。
+#include <cstdio>
+#include <iostream>
+#include <cstring>
+#include <string>
+#include <algorithm>
+#include <cmath>
+using namespace std;
+int main()
+{
+    string s;
+    int cnt;
+    cin>>s>>cnt;
+    int x=s.length();
+    for(int i=0;i<cnt;i++)
+    {
+        int flag=0;
+        for(int j=1;j<x;j++)
+        {
+            if(s[j-1]<s[j])
+            {
+                s.erase(s.begin()+j-1);
+                flag=1;
+                break;
+            }
+        }
+        if(flag==0)
+        {
+            s.erase(min_element(s.begin(),s.end()));
+        }
+    }
+    cout<<s<<endl;
+}
