@@ -1,0 +1,24 @@
+#include <cstdio>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int n,a[100];
+    a[1]=1;
+    a[2]=2;
+    a[3]=3;
+    a[4]=4;
+    while(cin>>n)
+    {
+        if(n==0)
+            break;
+        else
+    {
+        for(int i=5;i<=55;i++)
+            a[i]=a[i-1]+a[i-3];
+        cout<<a[n]<<endl;
+    }
+    }
+}
+每一年的母牛数目等于上一年的母牛数目加上前三年的数目
