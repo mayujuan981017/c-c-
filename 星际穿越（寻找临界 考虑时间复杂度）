@@ -1,0 +1,15 @@
+#include <cstdio>
+#include <math.h>
+#include <iostream>
+using namespace std;
+int main()
+{
+    long long x,i;
+    cin>>x;
+    i=sqrt(x);//最大值不可能超过x
+    while(i*i+i>x)
+    {
+        i--;
+    }
+    cout<<i<<endl;
+}
