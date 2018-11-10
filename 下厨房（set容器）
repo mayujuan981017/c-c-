@@ -1,0 +1,16 @@
+#include <cstdio>
+#include <iostream>
+#include <string>
+#include <set>
+using namespace std;
+int main()
+{
+    string s;
+    set<string> bag;
+
+    while(cin>>s)
+    {
+        bag.insert(s);
+    }
+    cout<<bag.size()<<endl;
+}
