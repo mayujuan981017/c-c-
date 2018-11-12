@@ -1,0 +1,23 @@
+#include <cstdio>
+#include <iostream>
+using namespace std;
+int main()
+{
+    long long n;
+    while(cin>>n)
+    {
+        long long sum=0;
+        while(n)
+        {
+            for(long long i=1;i<=n;i=i+2)
+            {
+                sum=sum+i;
+            }
+            n=n/2;
+        }
+      cout<<sum<<endl;
+    }
+}
+一个偶数除以2得到的一个奇数就为最大奇约数
+
+
