@@ -1,0 +1,158 @@
+杭电2072
+lily的好朋友xiaoou333最近很空，他想了一件没有什么意义的事情，就是统计一篇文章里不同单词的总数。下面你的任务是帮助xiaoou333解决这个问题。
+Input
+有多组数据，每组一行，每组就是一篇小文章。每篇小文章都是由小写字母和空格组成，没有标点符号，遇到#时表示输入结束。
+Output
+每组只输出一个整数，其单独成行，该整数代表一篇文章里不同单词的总数。
+#include <cstdio>
+#include <iostream>
+#include <string>
+#include <set>
+#include <sstream>
+using namespace std;
+int main()
+{
+    string s,t;
+    set<string> bag;
+    while(getline(cin,s))
+    {
+         if(s=="#")
+            break;
+        stringstream ss;
+        bag.clear();//清楚流的状态标志，但不会改变流中的内容，多次转换时要注意清楚状态
+        ss<<s;
+        while(ss>>t)
+        {
+            bag.insert(t);
+        }
+
+      cout<<bag.size()<<endl;
+    }
+
+}
+
+
+区别：
+
+clear（）：清除流的状态标志，但不会改变流中的内容。
+
+str（”“）：清空流中的数据，相当于无论之前流中的数据是什么，使用str（”“）之后，流数据为空，并且将状态符固定。
+
+例1：两者均无的实例
+
+#include <sstream>
+#include <iostream>
+#include<string>
+using namespace std;
+void main(void)
+{
+stringstream aa;
+int a=123,b=456;
+string m,n;
+aa<<a;//插入int数据，插入后，流的eofbit位固定，所以流将不再接受数据
+aa>>m;//装换为字符串 m=”123“
+aa<<b;//eofbit位固定，不会接收b
+aa>>n;//n=”“
+cout<<m<<endl<<n<<endl<<aa.str()<<endl;//流的内容仍然为”123“
+}
+
+运行结果：
+
+123
+
+
+
+123
+
+例2：仅使用clear（）
+
+#include <sstream>
+#include <iostream>
+#include<string>
+using namespace std;
+void main(void)
+{
+stringstream aa;
+int a=123,b=456;
+string m,n;
+aa<<a;
+aa>>m;
+aa.clear();//清除了流的eofbit位（failbit，badbit），使流能继续接受数据，但是流之前的内容并未清除
+aa<<b;//b的数据传入流
+aa>>n;
+cout<<m<<endl<<n<<endl<<aa.str()<<endl;
+}
+
+运行结果
+
+123
+
+456
+
+123456
+
+例3：仅使用str（”“）
+
+#include <sstream>
+#include <iostream>
+#include<string>
+using namespace std;
+void main(void)
+{
+stringstream aa;
+int a=123,b=456;
+string m,n;
+aa<<a;
+aa>>m;
+aa.str("");//清空了流的内容，同时再次固定了eofbit位，流将不再接收数据
+aa<<b;
+aa>>n;
+cout<<m<<endl<<n<<endl<<aa.str()<<endl;//运行结果将有两个空白行
+}
+
+运行结果：
+
+123
+
+
+
+
+
+例4：同时使用
+
+#include <sstream>
+#include <iostream>
+#include<string>
+using namespace std;
+void main(void)
+{
+stringstream aa;
+int a=123,b=456;
+string m,n;
+aa<<a;
+aa>>m;
+aa.clear();
+aa.str("");
+aa<<b;
+aa>>n;
+cout<<m<<endl<<n<<endl<<aa.str()<<endl;
+}
+
+运行结果：
+
+123
+
+456
+
+456
+
+从四个例可以看出
+
+1.如果要多次利用stringstream进行类型转换，必须使用str（”“），否则占用内存将不断扩大；
+
+2.使用str（”“）后，流的eofbit位固定了，再次进行类型转换时，需要清除状态位，所以要使用clear（）；
+--------------------- 
+作者：松果2018 
+来源：CSDN 
+原文：https://blog.csdn.net/songuo2018/article/details/46456475 
+版权声明：本文为博主原创文章，转载请附上博文链接！
