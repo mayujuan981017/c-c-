@@ -1,0 +1,51 @@
+#include <cstdio>
+#include <iostream>
+using namespace std;
+int main()
+{
+    int n;
+    char a,b;
+    int cnt=1,flag=0;
+    while(cin>>n>>a>>b)
+    {
+        cnt=1;
+        if(flag!=0)
+        {
+            cout<<endl;
+        }
+       char buf[100][100]={0};
+       int i=0,j=n,num=0;
+       if((n+1)/2%2==0)
+       {
+           char t=a;
+           a=b;
+           b=t;
+       }
+       char m;
+       while(num<n*n)
+       {
+
+           if(cnt%2!=0)
+           {
+               m=a;
+           }else
+           m=b;
+           while(i<n&&!buf[i+1][j])buf[++i][j]=m;num++;//向下
+           while(j>1&&!buf[i][j-1])buf[i][--j]=m;num++;//向左
+           while(i>1&&!buf[i-1][j])buf[--i][j]=m;num++;//向上
+           while(j<n&&!buf[i][j+1])buf[i][++j]=m;num++;//向右
+           cnt++;
+       }
+       if(n!=1)
+        buf[1][1]=buf[1][n]=buf[n][1]=buf[n][n]=' ';
+        for(int i=1;i<=n;i++)
+        {
+            for(int j=1;j<=n;j++)
+                cout<<buf[i][j];
+            cout<<endl;
+        }
+        flag++;
+        //cout<<endl;
+
+    }
+}
