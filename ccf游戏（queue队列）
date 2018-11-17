@@ -1,0 +1,66 @@
+#include <cstdio>
+#include <iostream>
+using namespace std;
+int main()
+{
+    int n,k;
+    cin>>n>>k;
+    int a[1000];
+    for(int i=1;i<=n;i++)
+        a[i]=i;
+    int cnt=n,num=0;
+    if(k==1)
+        cout<<a[n]<<endl;
+    else
+    {
+        while(cnt!=1)
+      {
+        for(int i=1;i<=n;i++)
+        {
+            if(a[i]!=-1)
+            {
+                num++;
+                a[i]=num;
+            }
+            if(a[i]%k==0||a[i]%10==k)
+            {
+                cnt--;
+               // cout<<cnt<<endl;
+                a[i]=-1;
+            }
+
+        }
+    }
+    for(int i=1;i<=n;i++)
+    {
+        if(a[i]!=-1)
+        {
+            cout<<i<<endl;
+            break;
+        }
+       //cout<<a[i]<<" ";
+    }
+    }
+
+}
+int main()
+{
+    int n,k,num=1;
+    cin>>n>>k;
+    queue<int> bag;
+    for(int i=1;i<=n;i++)
+    {
+        bag.push(i);
+    }
+    while(bag.size()>1)
+    {
+        int head=bag.front();
+        bag.pop();
+        if(num%k!=0||num%10!=k)
+        {
+            bag.push(head);
+        }
+        num++;
+    }
+    cout<<bag.front()<<endl;
+}
