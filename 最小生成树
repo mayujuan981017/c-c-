@@ -1,0 +1,69 @@
+#include <cstdio>
+#include <iostream>
+using namespace std;
+int main()
+{
+    int book[100],e[100][100],dis[100];
+    int n,m,min;//n为顶点个数，m为边数
+    cin>>n>>m;
+    int inf=9999999;//代表无穷，表示不能到达
+    //初始化,表示到达自身都是1，
+    for(int i=1;i<=n;i++)
+    {
+        for(int j=1;j<=n;j++)
+        {
+             if(i==j)
+        {
+            e[i][j]=0;
+        }else
+          e[i][j]=inf;
+        }
+    }
+    int a,b,c;
+    for(int i=1;i<=m;i++)
+    {
+        cin>>a>>b>>c;
+        e[a][b]=c;
+    }
+    //初始化dis数组， 表示1到各个顶点的距离
+    for(int i=1;i<=n;i++)
+        dis[i]=e[1][i];
+    //book数组初始化
+    for(int i=1;i<=n;i++)
+    {
+        book[i]=0;
+    }
+    book[1]=1;
+    int u;
+    //Dijkstra算法的核心
+    for(int i=1;i<=n-1;i++)
+    {
+        min=inf;
+        for(int j=1;j<=n;j++)
+        {
+            if(dis[j]<min&&book[j]==0)
+            {
+                min=dis[j];
+                u=j;
+            }
+        }
+        book[u]=1;
+        for(int k=1;k<=n;k++)
+        {
+           if(e[u][k]<inf)
+           {
+               if(dis[k]>dis[u]+e[u][k])
+               {
+                   dis[k]=dis[u]+e[u][k];
+               }
+           }
+        }
+    }
+    for(int i=1;i<=n;i++)
+    {
+        cout<<dis[i]<<" ";
+    }
+    cout<<endl;
+}
+算法思想：初始化自身到自身的距离是0，dis数组表示的是1到每个顶点的距离
+所有的顶点分成两部分，已知最短路径的顶点集合在p中，未知最短路径的顶点集合在q中，book数组为1表示顶点在集合p中，选择一个离源点最近的点加入到集合p中，对从这个点出发的每一条边进行松弛
