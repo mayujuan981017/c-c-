@@ -1,0 +1,29 @@
+//因为数字很大，所以要用到
+unsign _int64
+#include<stdio.h>
+#include<string.h>
+#include<algorithm>
+using namespace std;
+long long a[5],i,j,k,l,m,n;
+int main()
+{
+	int p;
+	scanf("%d",&p);
+	while(p--)
+	{
+		for(i=0;i<4;i++)
+		scanf("%lld",&a[i]);
+		sort(a,a+4);
+		if(a[0]==0)
+		{
+			printf("No\n");
+			continue;
+		}
+		if(a[0]+a[1]>a[3]-a[2])
+		printf("Yes\n");
+		else
+		printf("No\n");
+		//double help=a[1]*1.00/4+a[2]*1.00/4+a[0]*1.00/4;
+		//double cnt=a[3]*1.00/4;
+	}
+}
