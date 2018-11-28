@@ -1,0 +1,35 @@
+【CF 1080B】Margarite and the best present
+#include <cstdio>
+#include <iostream>
+using namespace std;
+#define ll long long
+int main()
+{
+    ll n,l,r,sum,t;
+    cin>>n;
+    while(n--)
+    {
+        cin>>l>>r;
+        if(l%2==0)
+        {
+            if(r%2==0)
+            {
+                t=(l-r)/2+r;
+            }else
+            {
+                t=(l-r-1)/2;
+            }
+        }
+        else
+        {
+            if(r%2==0)
+            {
+                t=(r-l+1)/2;
+            }else
+            {
+                t=(r-l)/2-r;
+            }
+        }
+        cout<<t<<endl;
+    }
+}
