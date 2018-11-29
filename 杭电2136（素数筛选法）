@@ -1,0 +1,58 @@
+找出最大素数的位置
+cin超时
+#include <cstdio>
+#include <iostream>
+using namespace std;
+#define maxn 1000000
+int a[maxn];
+int main()
+{
+    int n;
+    int k=1;
+    for(int i=2;i<=maxn;i++)
+    {
+        if(a[i]==0)
+        {
+            a[i]=k++;//标记每个素数的位置
+            for(int j=2*i;j<=maxn;j=j+i)//把每个倍数的数都标记说明这个数不是素数
+            {
+                a[j]=a[i];
+            }
+        }
+    }
+    while(scanf("%d",&n)!=EOF)
+    {
+        printf("%d\n",a[n]);
+    }
+}
+
+打表法输出素数
+
+#include <cstdio>
+#include <iostream>
+using namespace std;
+#define maxn 1000
+int a[maxn],pri[maxn];
+int main()
+{
+    int cnt=0;
+    int n;
+   cin>>n;
+  for(int i=2;i<=n;i++)
+  {
+      if(!a[i])
+      {
+          pri[cnt++]=i;
+      }
+      for(int j=2*i;j<=n;j=j+i)
+      {
+          a[j]=0;
+      }
+  }
+  for(int i=0;i<cnt;i++)
+    cout<<pri[i]<<" ";
+
+}
+
+
+
