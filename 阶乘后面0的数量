@@ -1,0 +1,18 @@
+判断5的个数即可，因为0是由2和5相乘得到的
+#include <cstdio>
+#include <iostream>
+using namespace std;
+int main()
+{
+    long long n;int cnt=0;
+    while(cin>>n)
+    {
+        cnt=0;
+        while(n)
+        {
+            n=n/5;
+            cnt=cnt+n;
+        }
+        cout<<cnt<<endl;
+    }
+}
