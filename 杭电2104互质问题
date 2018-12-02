@@ -1,0 +1,30 @@
+/*这道题看很久啊，意思是n个人围成一个圈，
+大家玩丢手帕游戏，手帕藏在某一个人的箱子里，
+Haha来找，每一次他都会跳过m-1个人。问你Haha
+是不是一定能找到手帕。因为Haha找的次数是无
+限的，可以永远找下去，所以，只要他能把所有
+的人都找一遍就一定能找到。但按照他的这种找
+法，如果n和m不互质的话，不互质就会出现某些
+人是永远不会找。所以看一下 n和m的最大公约数
+就行了*/
+#include <cstdio>
+#include <iostream>
+using namespace std;
+int gcd(int a,int b)
+{
+    int c=a%b;
+    return c==0?b:gcd(b,c);
+}
+int main()
+{
+    long long n,m;
+    while(cin>>n>>m)
+    {
+        if(n==-1&&m==-1)
+            break;
+        if(gcd(n,m)==1)
+            cout<<"YES"<<endl;
+        else
+            cout<<"POOR Haha"<<endl;
+    }
+}
