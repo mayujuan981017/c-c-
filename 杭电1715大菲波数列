@@ -1,0 +1,40 @@
+#include <cstdio>
+#include <iostream>
+#include <cstring>
+using namespace std;
+int a[1005][510];
+void f()
+{
+
+    a[1][0]=1;
+    a[2][0]=1;
+    int s,c;
+    for(int i=3;i<=1000;i++)
+    {
+       c=0;
+        for(int j=0;j<=500;j++)
+        {
+            s=a[i-1][j]+a[i-2][j]+c;
+            a[i][j]=s%10;
+            c=s/10;
+        }
+    }
+}
+int main()
+{
+	f();
+	int t,i,n;
+	scanf("%d",&t);
+	while(t--)
+	{
+		scanf("%d",&n);
+		for(i=500;i>=0;i--)
+		   if(a[n][i])
+		     break;
+		for(;i>=0;i--)
+		   printf("%d",a[n][i]);
+		printf("\n");
+	}
+	return 0;
+
+}
