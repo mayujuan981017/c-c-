@@ -1,0 +1,35 @@
+#include <iostream>
+#include <cstdio>
+#include <cstring>
+#include <algorithm>
+#include <cmath>
+using namespace std;
+const int maxn=1000000;
+bool save[maxn];
+int main(){
+    int t,n,m,i,now,god;
+    while(scanf("%d%d",&n,&m)!=EOF)
+        {
+        god=0;
+        memset(save, 0, sizeof(save));
+        save[0]=1;
+        int sum=0;
+        for(i=1;i<=n;i++)
+        {
+            scanf("%d",&now);
+            sum=(sum+now)%m;//只要余数有相等的说明存在
+            if(save[sum])
+            {
+                god=1;
+            }
+            save[sum]=1;
+        }
+        if(god){
+            printf("YES\n");
+        }else{
+            printf("NO\n");
+        }
+    }
+    return 0;
+}
+
