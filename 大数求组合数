@@ -1,0 +1,32 @@
+#include<stdio.h>
+long long c(int n, int m){
+	if(m < n - m)
+		m = n-m;
+	long long ans = 1;
+	for(int i = m + 1; i <= n; i++)
+		ans *= i;
+	for(int i = 1; i <= n-m; i++) 
+		ans /= i;
+	return ans;
+} 
+
+int main(){
+	
+	printf("组合数 = %d",c(25, 12));
+	return 0;
+}
+心得：①像阶乘这样数值很大的数，要时刻注意其溢出
+
+          ②long long 的取值范围了解一下：-2的64次 ~ 2的64次-1
+
+          ③即使用long long类型，这里还是会溢出，所以，解决方案是，先约分，再累乘。而且是，通过
+
+            
+
+        if（m < n-m){
+
+            m = n- m;
+
+        }
+
+    先获取大一点的数值约分的。这条语句更加保障了数据的不溢出，真的是很机智了
