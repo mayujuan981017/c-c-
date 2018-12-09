@@ -1,0 +1,50 @@
+//结束时间最早的先开始看
+#include <cstdio>
+#include <iostream>
+using namespace std;
+int main()
+{
+    struct b
+    {
+        int x;
+        int y;
+    };
+    struct b a[105],t;
+    int n;
+    while(cin>>n)
+    {
+        if(n==0)
+        break;
+        for(int i=0;i<n;i++)
+        {
+            cin>>a[i].x>>a[i].y;
+        }
+        for(int i=0;i<n;i++)//对结构体中的结束时间进行排序
+        {
+            for(int j=0;j<n-1-i;j++)
+            {
+                if(a[j].y>a[j+1].y)
+                {
+                    t=a[j];
+                    a[j]=a[j+1];
+                    a[j+1]=t;
+                }
+            }
+        }
+        t.y=a[0].y;
+        int cnt=1;
+        for(int i=1;i<n;i++)
+        {
+            if(a[i].x>=t.y)//如果另一个节目的开始时间大于前一个节目的结束时间就可以看
+            {
+                t.y=a[i].y;
+                cnt++;
+            }
+        }
+        cout<<cnt<<endl;
+
+    }
+
+
+}
+
