@@ -1,0 +1,33 @@
+#include <cstdio>
+#include <iostream>
+#include <vector>
+using namespace std;
+string l(vector<string> &str)
+{
+    string s="";
+    if(str.size()==0)
+    {
+        return s;
+    }
+    if(str.size()==1)
+        return str[0];
+    int j;
+    for(int i=0;i<str[0].size();i++)
+    {
+        char ch=str[0][i];//以第一个字符串为标准
+        for(j=1;j<=str.size();j++)
+        {
+            if(ch!=str[j][i])
+            {
+                break;
+            }
+        }
+        if(j==str.size())
+        {
+            s=s+ch;
+        }else
+            break;
+    }
+    return s;
+
+}
