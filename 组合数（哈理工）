@@ -1,0 +1,22 @@
+https://ac.nowcoder.com/acm/contest/301/A
+#include <cstdio>
+#include <iostream>
+using namespace std;
+const int maxn=1000000;
+long long a[maxn],b[maxn];
+int main()
+{
+   long long cnt=0;
+   int n,m;
+   cin>>n>>m;
+   for(int i=1;i<=n;i++)
+   {
+       int j=7-i%7;
+       while(j<=m)
+       {
+           cnt++;
+           j=j+7;
+       }
+   }
+   cout<<cnt<<endl;
+}
