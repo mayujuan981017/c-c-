@@ -1,0 +1,30 @@
+#include <iostream>
+#include <cstdio>
+using namespace std;
+int main()
+{
+    int a,b,p;
+    cin>>a>>b>>p;
+    int res=1%p;//12345326 0 1注意这个案例没有进入while循环
+    while(b)
+    {
+        if(b&1) res=res*1ll*a%p;//1ll是强制转换类型，b&1是表示b是个位的话
+        a=a*1ll*a%p;//循环是不断平方的
+        b>>=1;//b向右移动1位，相当于去掉最后一位
+    }
+    cout<<res<<endl;
+}
+typedef long long LL;
+LL kuai(LL a,LL b)
+{
+    LL res=1;
+    while(b)
+    {
+        if(b&1) res=res*1%mod;
+        a=a*a%mod;
+        b>=1;
+    }
+    return res;
+}
+
+
